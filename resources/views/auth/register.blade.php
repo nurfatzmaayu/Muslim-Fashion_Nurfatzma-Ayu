@@ -45,9 +45,9 @@
                                 name="password_confirmation" required />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
+            <div class="flex items-center justify-between mt-4">
+                <a class="text-xs text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    Sudah registrasi? Silahkan login!
                 </a>
 
                 <x-primary-button class="ml-4">

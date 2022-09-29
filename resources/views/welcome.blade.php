@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-container>
-        <div class="flex flex-wrap items-center">
+        <div class="flex flex-wrap items-center px-4 sm:px-0">
             <div class="w-full md:w-1/2 py-4 order-2 md:order-1">
                 <h2 class="text-4xl font-bold text-teal-600">FATAN <span class="font-light">Fashion</span></h2>
                 <p>Menjual berbagai macam pakaian pria, wanita dan anak-anak</p>
@@ -15,16 +15,16 @@
         </div>
     </x-container>
     <x-container>
-        <div class="flex flex-wrap items-center py-8 px-4 sm:px-0 bg-teal-700 rounded-xl">
-            <div class="w-1/2 md:w-3/4 px-4">
+        <div class="flex flex-wrap items-center py-8 px-4 sm:px-0 rounded-xl">
+            <div class="w-1/2 md:w-3/4 pr-4">
                 <form action="">
                     <input type="text" placeholder="Type here" class="input w-full" />
                 </form>
             </div>
-            <div class="w-1/2 md:w-1/4 px-4">
+            <div class="w-1/2 md:w-1/4 pl-4">
                 <div class="flex  items-center">
-                    <span class=" block w-1/4 text-white">Filter</span>
-                    <select class="select select-bordered w-3/4">
+                    <span class=" block w-1/4">Filter</span>
+                    <select class="select w-3/4">
                         <option disabled selected>Pick one</option>
                         <option>Star Wars</option>
                         <option>Harry Potter</option>
@@ -48,7 +48,7 @@
         </div>
     </x-container>
     <x-container>
-        <div class="grid grid-cols-5 gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 px-4 sm:px-0">
             @foreach ($barangs as $barang)
             <div class="card card-compact bg-base-100 shadow-xl">
                 <span class="block absolute p-2 bg-teal-600 text-white opacity-80 rounded-b-lg rounded-l-none">{{ $barang->jumlah_barang }}</span>
@@ -57,7 +57,10 @@
                     <h2 class="card-title text-base">{{ $barang->nama_barang }}</h2>
                     <div class="card-actions justify-end">
                         <p class="text-base text-slate-800">Rp. {{ number_format($barang->harga_barang) }}</p>
+                        @auth
                         <button class="btn bg-teal-600 border-0 btn-sm">Buy Now</button>
+                        @else
+                        @endauth
                     </div>
                 </div>
             </div>
