@@ -9,7 +9,7 @@ class WelcomeController extends Controller
 {
     public function index() {
         return view('welcome', [
-            'barangs' => Barang::pagination(12)
+            'barangs' => Barang::paginate(5)
         ]);
     }
 }

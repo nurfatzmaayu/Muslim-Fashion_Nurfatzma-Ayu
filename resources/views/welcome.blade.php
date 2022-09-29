@@ -23,7 +23,7 @@
             </div>
             <div class="w-1/2 md:w-1/4 px-4">
                 <div class="flex  items-center">
-                    <span class=" block w-1/4">Filter</span>
+                    <span class=" block w-1/4 text-white">Filter</span>
                     <select class="select select-bordered w-3/4">
                         <option disabled selected>Pick one</option>
                         <option>Star Wars</option>
@@ -48,47 +48,23 @@
         </div>
     </x-container>
     <x-container>
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-5 gap-4">
+            @foreach ($barangs as $barang)
             <div class="card card-compact bg-base-100 shadow-xl">
+                <span class="block absolute p-2 bg-teal-600 text-white opacity-80 rounded-b-lg rounded-l-none">{{ $barang->jumlah_barang }}</span>
                 <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" class="h-52" /></figure>
                 <div class="card-body">
-                    <h2 class="card-title">Shoes!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <h2 class="card-title text-base">{{ $barang->nama_barang }}</h2>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
+                        <p class="text-base text-slate-800">Rp. {{ number_format($barang->harga_barang) }}</p>
+                        <button class="btn bg-teal-600 border-0 btn-sm">Buy Now</button>
                     </div>
                 </div>
             </div>
-            <div class="card card-compact bg-base-100 shadow-xl">
-                <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" class="h-52" /></figure>
-                <div class="card-body">
-                    <h2 class="card-title">Shoes!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div class="card-actions justify-end">
-                        <button class="btn bg-text-teal-600 border-0 btn-sm text-xs">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card card-compact bg-base-100 shadow-xl">
-                <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" class="h-52" /></figure>
-                <div class="card-body">
-                    <h2 class="card-title">Shoes!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card card-compact bg-base-100 shadow-xl">
-                <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" class="h-52" /></figure>
-                <div class="card-body">
-                    <h2 class="card-title">Shoes!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+        </div>
+        <div class="pt-4 pb-12">
+            {{ $barangs->links() }}
         </div>
     </x-container>
 </x-app-layout>
