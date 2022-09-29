@@ -39,11 +39,11 @@
     <x-container>
         <div class="w-full px-4 py-8">
             <div class="flex flex-wrap justify-center gap-8">
-                <a href="">Semua</a>
-                <a href="">Baju</a>
-                <a href="">Celana</a>
-                <a href="">Tas</a>
-                <a href="">Skincare</a>
+                <a href="" class="text-lg {{ Request::is('all') ? 'font-bold' : '' }}">Semua</a>
+                <a href="" class="text-lg">Baju</a>
+                <a href="" class="text-lg">Celana</a>
+                <a href="" class="text-lg">Tas</a>
+                <a href="" class="text-lg">Skincare</a>
             </div>
         </div>
     </x-container>
