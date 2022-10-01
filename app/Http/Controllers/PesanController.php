@@ -39,7 +39,7 @@ class PesanController extends Controller
             $dataPesanan['jumlah_harga_pesanan'] = $barang->harga_barang * $request->jumlah_pesanan;
             Pesanan::create($dataPesanan);
         }else {
-            $hargaPesananBaru = $barang->jumlah_barang * $request->jumlah_pesanan;
+            $hargaPesananBaru = $barang->harga_barang * $request->jumlah_pesanan;
             $dataPesananBaru['jumlah_harga_pesanan'] = $cekPesanan->jumlah_harga_pesanan + $hargaPesananBaru;
             Pesanan::where('id', $cekPesanan->id)->update($dataPesananBaru);
         }
@@ -67,10 +67,32 @@ class PesanController extends Controller
 
     public function checkout() {
         $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
-        $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        if (!empty($pesanan)) {
+            $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        }else {
+            $pesanan_details = PesananDetail::first();
+        }
+
+
+
         return view('pesan.checkout', [
             "pesanan" => $pesanan,
             "pesanan_details" => $pesanan_details
         ]);
+    }
+
+    public function destroy(PesananDetail $pesananDetail) {
+        $barang = Barang::where('id', $pesananDetail->barang->id)->first();
+        $dataBarang['jumlah_barang'] = $barang->jumlah_barang - $pesananDetail->jumlah_pesanan;
+        Barang::where('id', $pesananDetail->barang_id)->update($dataBarang);
+
+        $pesanan = Pesanan::where('id', $pesananDetail->pesanan_id)->first();
+        $dataPesanan['jumlah_harga_pesanan'] = $pesanan->jumlah_harga_pesanan - $pesananDetail->jumlah_harga;
+        Pesanan::where('id', $pesanan->id)->update($dataPesanan);
+
+        PesananDetail::destroy('id', $pesananDetail->id);
+
+        FacadesAlert::success('success', 'Pesanan berhasil di hapus!');
+        return redirect('checkout');
     }
 }

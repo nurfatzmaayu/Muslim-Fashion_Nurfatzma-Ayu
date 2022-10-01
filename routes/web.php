@@ -29,5 +29,6 @@ Route::post('pesan/{barang}', [PesanController::class, 'store'])->middleware('au
 
 // Checkout
 Route::get('checkout', [PesanController::class, 'checkout'])->middleware('auth')->name('checkout');
+Route::delete('checkout/{pesanan_detail}', [PesanController::class, 'destroy'])->middleware('auth')->name('destroy');
 
 require __DIR__.'/auth.php';
