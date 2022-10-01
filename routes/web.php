@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PesanController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,12 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+// Pesan
+Route::get('pesan/{barang}', [PesanController::class, 'index'])->middleware('auth')->name('pesan');
+Route::post('pesan/{barang}', [PesanController::class, 'store'])->middleware('auth')->name('pesan.store');
+
+// Checkout
+Route::get('checkout', [PesanController::class, 'checkout'])->middleware('auth')->name('checkout');
 
 require __DIR__.'/auth.php';

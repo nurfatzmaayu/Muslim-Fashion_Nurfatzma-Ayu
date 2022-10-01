@@ -9,6 +9,8 @@ class PesananDetail extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function pesanan() {
         return $this->belongsTo(Pesanan::class);
     }
