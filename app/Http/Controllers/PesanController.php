@@ -73,8 +73,6 @@ class PesanController extends Controller
             $pesanan_details = PesananDetail::first();
         }
 
-
-
         return view('pesan.checkout', [
             "pesanan" => $pesanan,
             "pesanan_details" => $pesanan_details
@@ -94,5 +92,9 @@ class PesanController extends Controller
 
         FacadesAlert::success('success', 'Pesanan berhasil di hapus!');
         return redirect('checkout');
+    }
+
+    public function konfirmasi(Request $request){
+        dd($request);
     }
 }

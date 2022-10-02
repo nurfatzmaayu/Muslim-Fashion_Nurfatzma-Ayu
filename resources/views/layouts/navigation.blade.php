@@ -11,17 +11,33 @@
                 </div>
 
                 <!-- Navigation Links -->
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Home') }}
-                    </x-nav-link>
-                </div> --}}
+
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('checkout')">
+                            @php
+                                $pesanan = \App\Models\Pesanan::where('user_id', Auth::user()->id)
+                                    ->where('status', 0)
+                                    ->first();
+                                $pesananDetail = \App\Models\PesananDetail::where('pesanan_id', $pesanan->id);
+                            @endphp
+                            <span
+                                class="px-1 rounded-full border border-teal-600 text-teal-600 bg-white text-xs absolute top-8 ml-3">{{ $pesananDetail->count() }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                                class="bi bi-bag-fill mr-4" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
+                            </svg>
+                        </x-nav-link>
+                    </div>
                     <x-dropdown align="right" width="48">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Home') }}
+                        </x-nav-link>
                         <x-slot name="trigger">
                             <button
                                 class="flex items-center text-sm font-medium text-white hover:text-slate-100 hover:border-gray-300 focus:outline-none focus:text-slate-100 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -77,6 +93,21 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
+                <x-nav-link :href="route('checkout')">
+                    @php
+                        $pesanan = \App\Models\Pesanan::where('user_id', Auth::user()->id)
+                            ->where('status', 0)
+                            ->first();
+                        $pesananDetail = \App\Models\PesananDetail::where('pesanan_id', $pesanan->id);
+                    @endphp
+                    <span
+                        class="px-1 rounded-full border border-teal-600 text-teal-600 bg-white text-xs absolute top-8 ml-3">{{ $pesananDetail->count() }}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-bag-fill mr-4" viewBox="0 0 16 16">
+                        <path
+                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z" />
+                    </svg>
+                </x-nav-link>
                 <button @click="open = ! open"
                     class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -121,6 +152,7 @@
 
                     <div class="mt-3 space-y-1">
                         <!-- Authentication -->
+
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-responsive-nav-link :href="route('logout')">
