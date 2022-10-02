@@ -36,6 +36,7 @@ class PesanController extends Controller
             $dataPesanan['user_id'] = Auth::user()->id;
             $dataPesanan['tanggal_pesanan'] = now();
             $dataPesanan['status'] = 0;
+            $dataPesanan['kode_unik'] = mt_rand(100, 999);
             $dataPesanan['jumlah_harga_pesanan'] = $barang->harga_barang * $request->jumlah_pesanan;
             Pesanan::create($dataPesanan);
         }else {
@@ -91,10 +92,24 @@ class PesanController extends Controller
         PesananDetail::destroy('id', $pesananDetail->id);
 
         FacadesAlert::success('success', 'Pesanan berhasil di hapus!');
-        return redirect('checkout');
+        return redirect('history');
     }
 
     public function konfirmasi(Request $request){
-        dd($request);
+        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $dataPesanan['status'] = 1;
+        Pesanan::where('id', $pesanan->id)->update($dataPesanan);
+
+        $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
+        foreach ($pesanan_details as $pesanan_detail) {
+            $barang = Barang::where('id', $pesanan_detail->barang_id)->first();
+            $dataBarang['jumlah_barang'] = $barang->jumlah_barang - $pesanan_detail->jumlah_pesanan;
+            Barang::where('id', $barang->id)->update($dataBarang);
+        }
+
+        FacadesAlert::success('success', "Pesanan telah di checkout! Silahkan lakukan pembayaran!");
+
+        return redirect('history/' . $pesanan->id);
+
     }
 }

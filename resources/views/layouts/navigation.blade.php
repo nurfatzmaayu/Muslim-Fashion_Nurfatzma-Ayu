@@ -20,16 +20,16 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('checkout')">
                             @php
-                                if (!empty($pesanan)) {
-                                    $pesanan = \App\Models\Pesanan::where('user_id', Auth::user()->id)
+                                $pesanan = \App\Models\Pesanan::where('user_id', Auth::user()->id)
                                     ->where('status', 0)
                                     ->first();
+                                if (!empty($pesanan)) {
                                     $pesananDetail = \App\Models\PesananDetail::where('pesanan_id', $pesanan->id);
                                 }
                             @endphp
                             @if (!empty($pesananDetail))
-                            <span
-                            class="px-1 rounded-full border border-teal-600 text-teal-600 bg-white text-xs absolute top-8 ml-3">{{ $pesananDetail->count() }}</span>
+                                <span
+                                    class="px-1 rounded-full border border-teal-600 text-teal-600 bg-white text-xs absolute top-8 ml-3">{{ $pesananDetail->count() }}</span>
                             @endif
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-bag-fill mr-4" viewBox="0 0 16 16">
@@ -64,7 +64,7 @@
                                 My Profile
                             </x-dropdown-link>
 
-                            <x-dropdown-link>
+                            <x-dropdown-link :href="route('history')">
                                 History
                             </x-dropdown-link>
 
@@ -99,16 +99,16 @@
             <div class="-mr-2 flex items-center sm:hidden">
                 <x-nav-link :href="route('checkout')">
                     @php
-                        if (!empty($pesananDetail)) {
                         $pesanan = \App\Models\Pesanan::where('user_id', Auth::user()->id)
                             ->where('status', 0)
                             ->first();
-                        $pesananDetail = \App\Models\PesananDetail::where('pesanan_id', $pesanan->id);
+                        if (!empty($pesananDetail)) {
+                            $pesananDetail = \App\Models\PesananDetail::where('pesanan_id', $pesanan->id);
                         }
-                        @endphp
+                    @endphp
                     @if (!empty($pesananDetail))
-                    <span
-                        class="px-1 rounded-full border border-teal-600 text-teal-600 bg-white text-xs absolute top-8 ml-3">{{ $pesananDetail->count() }}</span>
+                        <span
+                            class="px-1 rounded-full border border-teal-600 text-teal-600 bg-white text-xs absolute top-8 ml-3">{{ $pesananDetail->count() }}</span>
                     @endif
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                         class="bi bi-bag-fill mr-4" viewBox="0 0 16 16">
