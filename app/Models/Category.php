@@ -9,7 +9,13 @@ class Category extends Model
 {
     use HasFactory;
 
+
     public function barangs() {
-        return $this->hasMany(Barang::class);
+        return  $this->hasMany(Barang::class);
+    }
+
+    public function getRouteKey()
+    {
+        return 'slug';
     }
 }

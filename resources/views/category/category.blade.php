@@ -42,12 +42,12 @@
                 @php
                     $categories = \App\Models\Category::all();
                 @endphp
-                <a href="{{ route('dashboard') }}" class="text-lg {{ Request::is('dashboard') ? 'font-bold' : '' }}">Semua</a>
+                <a href="{{ route('dashboard') }}"
+                    class="text-lg {{ Request::is('dashboard') ? 'font-bold' : '' }}">Semua</a>
                 @foreach ($categories as $category)
-
-                <a href="categories/{{ $category->id }}"
-                    class="text-lg {{ Request::is('categories/' . $category->slug) }}">{{ $category->nama_kategori }}</a>
-                    @endforeach
+                    <a href="{{ route('categories.show', $category->slug) }}"
+                        class="text-lg {{ Request::is('category/' . $category->slug) }}">{{ $category->nama_kategori }}</a>
+                @endforeach
             </div>
         </div>
     </x-container>
@@ -70,7 +70,6 @@
                                             d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z" />
                                     </svg></a>
                             @else
-
                             @endauth
                         </div>
                     </div>
@@ -78,7 +77,7 @@
             @endforeach
         </div>
         <div class="pt-4 pb-12">
-            {{ $barangs->links() }}
+            {{-- {{ $barangs->links() }} --}}
         </div>
     </x-container>
 </x-app-layout>

@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             'jumlah_barang' => 50,
             'harga_barang' => 50000,
             'keterangan_barang' => 'Ready',
-            'id_kategori' => 1
+            'category_id' => 1
         ]);
         Barang::create([
             'nama_barang' => 'Baju 2',
@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
             'jumlah_barang' => 54,
             'harga_barang' => 50000,
             'keterangan_barang' => 'Ready',
-            'id_kategori' => 1
+            'category_id' => 1
         ]);
         Barang::create([
             'nama_barang' => 'Baju 3',
@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
             'jumlah_barang' => 20,
             'harga_barang' => 70000,
             'keterangan_barang' => 'Ready',
-            'id_kategori' => 1
+            'category_id' => 1
         ]);
         Barang::create([
             'nama_barang' => 'Baju 4',
@@ -74,7 +74,7 @@ class DatabaseSeeder extends Seeder
             'jumlah_barang' => 20,
             'harga_barang' => 65000,
             'keterangan_barang' => 'Ready',
-            'id_kategori' => 1
+            'category_id' => 1
         ]);
         Barang::create([
             'nama_barang' => 'Celana 1',
@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
             'jumlah_barang' => 20,
             'harga_barang' => 65000,
             'keterangan_barang' => 'Ready',
-            'id_kategori' => 2
+            'category_id' => 2
         ]);
         Barang::create([
             'nama_barang' => 'Tas 1',
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
             'jumlah_barang' => 20,
             'harga_barang' => 65000,
             'keterangan_barang' => 'Ready',
-            'id_kategori' => 3
+            'category_id' => 3
         ]);
         Barang::create([
             'nama_barang' => 'Skincare 1',
@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
             'jumlah_barang' => 20,
             'harga_barang' => 65000,
             'keterangan_barang' => 'Ready',
-            'id_kategori' => 4
+            'category_id' => 4
         ]);
     }
 }

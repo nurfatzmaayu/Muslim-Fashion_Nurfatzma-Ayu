@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 class BarangController extends Controller
 {
     public function index() {
-        return view('welcome', [
-            'barangs' => Barang::pagination(10),
-        ]);
+
     }
 }

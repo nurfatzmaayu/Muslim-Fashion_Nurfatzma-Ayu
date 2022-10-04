@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PesanController;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Welcome
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
@@ -41,5 +42,9 @@ Route::put('profile/{user}', [ProfileController::class, 'update'])->middleware('
 // History
 Route::get('history', [HistoryController::class, 'index'])->middleware('auth')->name('history');
 Route::get('history/{pesanan}', [HistoryController::class, 'show'])->middleware('auth')->name('history.show');
+
+// Category
+Route::get('categories', [CategoryController::class, 'index'])->name('category');
+Route::get('categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 require __DIR__.'/auth.php';

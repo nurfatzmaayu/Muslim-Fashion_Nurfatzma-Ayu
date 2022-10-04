@@ -20,9 +20,11 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('checkout')">
                             @php
-                                $pesanan = \App\Models\Pesanan::where('user_id', Auth::user()->id)
+                                if(!empty(Auth::user()->id)) {
+                                    $pesanan = \App\Models\Pesanan::where('user_id', Auth::user()->id)
                                     ->where('status', 0)
                                     ->first();
+                                }
                                 if (!empty($pesanan)) {
                                     $pesananDetail = \App\Models\PesananDetail::where('pesanan_id', $pesanan->id);
                                 }
@@ -99,10 +101,12 @@
             <div class="-mr-2 flex items-center sm:hidden">
                 <x-nav-link :href="route('checkout')">
                     @php
-                        $pesanan = \App\Models\Pesanan::where('user_id', Auth::user()->id)
+                        if (!empty(Auth::user()->id)) {
+                            $pesanan = \App\Models\Pesanan::where('user_id', Auth::user()->id)
                             ->where('status', 0)
                             ->first();
-                        if (!empty($pesananDetail)) {
+                        }
+                        if (!empty($pesanan)) {
                             $pesananDetail = \App\Models\PesananDetail::where('pesanan_id', $pesanan->id);
                         }
                     @endphp
