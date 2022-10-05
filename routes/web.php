@@ -4,6 +4,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\LoginWithGoogleController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -21,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Welcome
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [WelcomeController::class, 'index']);
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
@@ -46,5 +47,9 @@ Route::get('history/{pesanan}', [HistoryController::class, 'show'])->middleware(
 // Category
 Route::get('categories', [CategoryController::class, 'index'])->name('category');
 Route::get('categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
+
+// Login With Google
+Route::get('auth/googlelogin', [LoginWithGoogleController::class, 'redirectToGoogle'])->name('redirecttogoogle');
+Route::get('auth/googlelogin/callback', [LoginWithGoogleController::class, 'handleGoogleCallback'])->name('handlegooglecallback');
 
 require __DIR__.'/auth.php';

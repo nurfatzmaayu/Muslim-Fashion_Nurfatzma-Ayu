@@ -39,14 +39,10 @@
     <x-container>
         <div class="w-full px-4 py-8">
             <div class="flex flex-wrap justify-center gap-8">
-                @php
-                    $categories = \App\Models\Category::all();
-                @endphp
                 <a href="{{ route('dashboard') }}" class="text-lg {{ Request::is('dashboard') ? 'font-bold' : '' }}">Semua</a>
                 @foreach ($categories as $category)
-
-                <a href="categories/{{ $category->id }}"
-                    class="text-lg {{ Request::is('categories/' . $category->slug) }}">{{ $category->nama_kategori }}</a>
+                <a href="{{ route('categories.show', $category->slug ) }}"
+                    class="text-lg {{ Request::is('categories') ? 'font-bold' : '' }}">{{ $category->nama_kategori }}</a>
                     @endforeach
             </div>
         </div>

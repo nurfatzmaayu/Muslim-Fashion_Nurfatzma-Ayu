@@ -1,10 +1,5 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
 
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -15,32 +10,41 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
+            <a href="/">
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            </a>
             <!-- Email Address -->
             <div>
-                <x-input-label for="email" :value="__('Email')" />
-
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus  placeholder="Email"/>
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
-
                 <x-text-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required autocomplete="current-password" />
+                                required autocomplete="current-password" placeholder="Password" />
             </div>
 
-            <div class="flex items-center justify-between mt-4">
-                    <a class="text-xs text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
-                        Belum registrasi? Silahkan registrasi!
-                    </a>
+            <div class="grid grid-cols-1 items-center justify-between mt-4">
 
-                <x-primary-button class="ml-3">
-                    {{ __('Log in') }}
+
+                <x-primary-button class="w-full text-center">
+                    Masuk
                 </x-primary-button>
+                <span class="text-center text-slate-500 py-2">Atau</span>
+                <div class="w-full pb-5">
+                    <a href="{{ url('auth/googlelogin') }}" class="flex justify-center items-center text-slate-600">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png" alt="" class="w-4 mr-1"> Masuk dengan Google
+                    </a>
+                </div>
             </div>
         </form>
+        <hr class="pb-5">
+        <div class="card">
+            <a class="text-xs text-gray-600 hover:text-gray-900 text-center" href="{{ route('register') }}">
+                Belum registrasi? <span class="font-semibold text-teal-600"> Silahkan registrasi!</span>
+            </a>
+        </div>
     </x-auth-card>
 </x-guest-layout>
