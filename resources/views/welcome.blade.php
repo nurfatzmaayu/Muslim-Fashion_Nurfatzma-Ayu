@@ -2,7 +2,7 @@
     <x-container>
         <div class="flex flex-wrap items-center px-4 sm:px-0">
             <div class="w-full md:w-1/2 py-4 order-2 md:order-1">
-                <h2 class="text-4xl font-bold text-teal-600">FATAN <span class="font-light">Fashion</span></h2>
+                <h2 class="text-4xl font-bold text-teal-600">Muslim <span class="font-light">Fashion</span></h2>
                 <p>Menjual berbagai macam pakaian pria, wanita dan anak-anak</p>
             </div>
             <div class="w-full md:w-1/2 text-center order-1 md:order-2 my-4 ">
@@ -51,23 +51,24 @@
     </x-container>
     <x-container>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4 px-4 sm:px-0">
-            @foreach ($barangs as $barang)
+        @foreach ($barangs as $barang)
                 <div class="card card-compact bg-base-100 shadow-xl">
                     <span
                         class="block absolute p-2 bg-teal-600 text-white opacity-80 rounded-b-lg rounded-l-none">{{ $barang->jumlah_barang }}</span>
-                    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" class="h-52" /></figure>
+                    <img src="{{asset('img/'. $barang->gambar_barang)}}" alt="Shoes" class="h-52" />
                     <div class="card-body">
                         <h2 class="card-title text-base">{{ $barang->nama_barang }}</h2>
                         <div class="card-actions justify-end">
                             <p class="text-base text-slate-800">Rp. {{ number_format($barang->harga_barang) }}</p>
                             @auth
-                                <button class="btn bg-teal-600 border-0 btn-sm"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="16" height="16" fill="currentColor" class="bi bi-bag-plus-fill"
-                                        viewBox="0 0 16 16">
+                                <a href="{{ route('pesan', $barang->id) }}" class="btn bg-teal-600 border-0 btn-sm"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-bag-plus-fill" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                             d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z" />
-                                    </svg></button>
+                                    </svg></a>
                             @else
+
                             @endauth
                         </div>
                     </div>

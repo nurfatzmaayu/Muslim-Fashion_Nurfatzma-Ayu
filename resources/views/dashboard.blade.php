@@ -2,7 +2,7 @@
     <x-container>
         <div class="flex flex-wrap items-center px-4 sm:px-0">
             <div class="w-full md:w-1/2 py-4 order-2 md:order-1">
-                <h2 class="text-4xl font-bold text-teal-600">FATAN <span class="font-light">Fashion</span></h2>
+                <h2 class="text-4xl font-bold text-teal-600">Muslim <span class="font-light">Fashion</span></h2>
                 <p>Menjual berbagai macam pakaian pria, wanita dan anak-anak</p>
             </div>
             <div class="w-full md:w-1/2 text-center order-1 md:order-2 my-4 ">
@@ -52,8 +52,8 @@
             @foreach ($barangs as $barang)
                 <div class="card card-compact bg-base-100 shadow-xl">
                     <span
-                        class="block absolute p-2 bg-teal-600 text-white opacity-80 rounded-b-lg rounded-l-none">{{ $barang->jumlah_barang }}</span>
-                    <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" class="h-52" /></figure>
+                        class="block absolute p-2 bg-teal-600 text-white opacity-80 rounded-b-lg rounded-l-none">{{ $barang->jumlah_barang }} {{$barang->gambar_barang}}</span>
+                    <img src="{{asset('img/'. $barang->gambar_barang)}}" alt="Shoes" class="h-52" />
                     <div class="card-body">
                         <h2 class="card-title text-base">{{ $barang->nama_barang }}</h2>
                         <div class="card-actions justify-end">

@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <h2 class="text-2xl text-white  font-light"><span class="font-bold">FATAN</span> Fashion</h2>
+                        <h2 class="text-2xl text-white  font-light"><span class="font-bold">Muslim</span> Fashion</h2>
                     </a>
                 </div>
 
